@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ModernTech HR System</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- styles -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Vue mounts -->
+    <div id="app">
+
+      <!-- LOGIN SCREEN: shown until the user logs in -->
+      <login-component
+        v-if="!isLoggedIn"
+        @logged-in="handleLoggedIn"
+      ></login-component>
+
+      <!-- MAIN APP: only shown after login -->
+      <div v-else>
+        <!--  TOP NAVBAR -->
+        <nav class="navbar navbar-dark bg-dark px-4">
+          <span class="navbar-brand fw-bold fs-5">
+            🏢 ModernTech Solutions — HR System
+          </span>
+          <div class="d-flex align-items-center gap-3">
+            <span class="text-white small">
+              Welcome, {{ currentUser.email }}
+            </span>
+            <button
+              class="btn btn-sm btn-outline-light"
+              @click="handleLogout"
+            >
+              Log Out
+            </button>
+          </div>
+        </nav>
+
+        <!-- MAIN LAYOUT -->
+        <div class="d-flex" style="min-height: calc(100vh - 56px)">
+          <!-- SIDEBAR -->
+          <div class="sidebar bg-dark text-white p-3">
+            <ul class="nav flex-column">
+              <li class="nav-item mb-1">
+                <a
+                  class="nav-link text-white"
+                  :class="{ active: currentPage === 'dashboard' }"
+                  @click="currentPage = 'dashboard'"
+                  href="#"
+                >
+                  📊 Dashboard
+                </a>
+              </li>
+              <li class="nav-item mb-1">
+                <a
+                  class="nav-link text-white"
+                  :class="{ active: currentPage === 'employees' }"
+                  @click="currentPage = 'employees'"
+                  href="#"
+                >
+                  👥 Employees
+                </a>
+              </li>
+              <li class="nav-item mb-1">
+                <a
+                  class="nav-link text-white"
+                  :class="{ active: currentPage === 'payroll' }"
+                  @click="currentPage = 'payroll'"
+                  href="#"
+                >
+                  💰 Payroll
+                </a>
+              </li>
+              <li class="nav-item mb-1">
+                <a
+                  class="nav-link text-white"
+                  :class="{ active: currentPage === 'timeoff' }"
+                  @click="currentPage = 'timeoff'"
+                  href="#"
+                >
+                  🗓️ Time Off
+                </a>
+              </li>
+              <li class="nav-item mb-1">
+                <a
+                  class="nav-link text-white"
+                  :class="{ active: currentPage === 'attendance' }"
+                  @click="currentPage = 'attendance'"
+                  href="#"
+                >
+                  ✅ Attendance
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- PAGE CONTENT -->
+          <div class="flex-grow-1 p-4 bg-light">
+            <!-- Each section shows/hides based on currentPage -->
+            <div v-if="currentPage === 'dashboard'">
+              <dashboard-component></dashboard-component>
+            </div>
+            <div v-if="currentPage === 'employees'">
+              <employees-component></employees-component>
+            </div>
+            <div v-if="currentPage === 'payroll'">
+              <payroll-component></payroll-component>
+            </div>
+            <div v-if="currentPage === 'timeoff'">
+              <timeoff-component></timeoff-component>
+            </div>
+            <div v-if="currentPage === 'attendance'">
+              <attendance-component></attendance-component>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vue 3 CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- API helper: talks to the Node.js/Express backend -->
+    <script src="api.js"></script>
+
+    <!-- component files -->
+    <script src="components/Login.js"></script>
+    <script src="components/Dashboard.js"></script>
+    <script src="components/Employees.js"></script>
+    <script src="components/Payroll.js"></script>
+    <script src="components/TimeOff.js"></script>
+    <script src="components/Attendance.js"></script>
+
+    <!-- Main app -->
+    <script src="main.js"></script>
+  </body>
+</html>
