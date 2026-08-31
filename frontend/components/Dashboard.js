@@ -52,10 +52,7 @@ const DashboardComponent = {
       return Math.round((present / this.attendanceSummary.total) * 100);
     },
     recentHires() {
-      const twoYearsAgo = new Date();
-      twoYearsAgo.setFullYear(twoYearsAgo.getFullYear() - 2);
-      return this.employees
-        .filter((e) => new Date(e.hire_date) >= twoYearsAgo)
+      return [...this.employees]
         .sort((a, b) => new Date(b.hire_date) - new Date(a.hire_date))
         .slice(0, 4);
     },
