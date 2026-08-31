@@ -205,7 +205,22 @@ moderntech_hr/
 
 ## Screenshots
 
-_Add screenshots of the running application here (login screen, dashboard, employees, payroll, time off)._
+## Screenshots
+
+**Login**
+![Login screen](login%20screen%20.png)
+
+**Dashboard**
+![Dashboard](DASHBOARD%20SCREEN%20.png)
+
+**Employees**
+![Employees page](EMPLOYEES%20SCREEN.png)
+
+**Payroll**
+![Payroll page](PAYROLL%20SCREEN.png)
+
+**Time Off**
+![Time off page](TIMEOFF%20SCREEN.png)
 
 ## Author
 
